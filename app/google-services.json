@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "82555199913",
+    "firebase_url": "https://fire1-95766-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "fire1-95766",
+    "storage_bucket": "fire1-95766.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:82555199913:android:ddc6d608db3dfffac2e4b8",
+        "android_client_info": {
+          "package_name": "com.example.lommaquiz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "82555199913-s3rnce2u5bp5hpo0khbqhuimutfrmesm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGbgsgLNVloO2Mlv4Xf8i5upahYfz5cek"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "82555199913-s3rnce2u5bp5hpo0khbqhuimutfrmesm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "82555199913-77jbtbp58jcklhdt8jgk1qs1ic1ht6qt.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.jorgen-raby.LommaQuiz"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

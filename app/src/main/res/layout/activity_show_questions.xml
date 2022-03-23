@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".showQuestions">
+
+    <TextView
+        android:id="@+id/showChosenQuizTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="188dp"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/questionTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showChosenQuizTV" />
+
+    <TextView
+        android:id="@+id/answer1TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="26dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/answer2TV"
+        app:layout_constraintStart_toEndOf="@+id/answerBtn1" />
+
+    <TextView
+        android:id="@+id/answer2TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="27dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/answer3TV"
+        app:layout_constraintStart_toEndOf="@+id/answerBtn2" />
+
+    <TextView
+        android:id="@+id/answer3TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="51dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/answerBtn3" />
+
+    <Button
+        android:id="@+id/answerBtn1"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="2dp"
+        android:text="1"
+        app:layout_constraintBottom_toTopOf="@+id/answerBtn2"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/answerBtn2"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="2dp"
+        android:text="X"
+        app:layout_constraintBottom_toTopOf="@+id/answerBtn3"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/answerBtn3"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="28dp"
+        android:text="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
