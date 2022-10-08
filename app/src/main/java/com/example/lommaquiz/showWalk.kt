@@ -115,10 +115,12 @@ abstract class showWalk : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
 
         countdownTwoSecond()
 
+        readFromFirebase += 1
         database.child("QuizWalks").child("maps").get().addOnSuccessListener {
             Log.i("firebase", "Got value ${it.value}")
             //  for (snapchild in it.children) {
             var i = 0
+            mapNames.clear()
             for (snapchild in it.children) {
 
                 var tempshop = snapchild.getValue()!!
@@ -141,155 +143,71 @@ abstract class showWalk : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
         }
 
 
-
-  /*      binding.saveBtn.setOnClickListener {
-
-            var i = 0
-
-            i = binding.coordinateNbrET.text.toString().toInt()
-
-            var letter: String = ""
-
-            if (i == 0) {
-                letter = "A"
-            }
-
-            if (i == 1) {
-                letter = "B"
-            }
-
-            if (i == 2) {
-                letter = "C"
-            }
-
-            if (i == 3) {
-                letter = "D"
-            }
-
-            if (i == 4) {
-                letter = "E"
-            }
-
-            if (i == 5) {
-                letter = "F"
-            }
-
-            if (i == 6) {
-                letter = "G"
-            }
-
-            if (i == 7) {
-                letter = "H"
-            }
-
-            if (i == 8) {
-                letter = "I"
-            }
-
-            if (i == 9) {
-                letter = "J"
-            }
-
-            if (i == 10) {
-                letter = "K"
-            }
-
-            if (i == 11) {
-                letter = "L"
-            }
-
-            getLastKnownLocation()
-
-            var shopref = database.child("QuizWalks").child("maps").child("Walk1").child(letter)
-                .child("posLatitude")
-
-            shopref.setValue(myPos.latitude.toString())
-            var shopref2 = database.child("QuizWalks").child("maps").child("Walk1").child(letter)
-                .child("posLongitude")
-
-            shopref2.setValue(myPos.longitude.toString())
-
-        }*/
-
-       /* binding.SeeWalksBtn.setOnClickListener {
-            val intent = Intent(this, choseSeeWalks::class.java)
-
-            startActivity(intent)
-        }*/
     }
+
+
 
     fun showWalk(){
-        for (i in 0..11) {
-            val myPoswalk = LatLng(coordinatesLatitude[i].toDouble(), coordinatesLongitude[i].toDouble())
 
 
-    //        var themarker = MarkerOptions().position( myPoswalk).title("Minc")
-            var themarker = MarkerOptions().position(fkip).title("Minc")
+        //      var themarker = MarkerOptions().position(fkip).title("Marker in Sydney").snippet("Titta lite text")
+        val myPoswalk1 = LatLng(coordinatesLatitude[0].toDouble(), coordinatesLongitude[0].toDouble())
+        val myPoswalk2 = LatLng(coordinatesLatitude[1].toDouble(), coordinatesLongitude[1].toDouble())
+        val myPoswalk3 = LatLng(coordinatesLatitude[2].toDouble(), coordinatesLongitude[2].toDouble())
+        val myPoswalk4 = LatLng(coordinatesLatitude[3].toDouble(), coordinatesLongitude[3].toDouble())
+        val myPoswalk5 = LatLng(coordinatesLatitude[4].toDouble(), coordinatesLongitude[4].toDouble())
+        val myPoswalk6 = LatLng(coordinatesLatitude[5].toDouble(), coordinatesLongitude[5].toDouble())
+        val myPoswalk7 = LatLng(coordinatesLatitude[6].toDouble(), coordinatesLongitude[6].toDouble())
+        val myPoswalk8 = LatLng(coordinatesLatitude[7].toDouble(), coordinatesLongitude[7].toDouble())
+        val myPoswalk9 = LatLng(coordinatesLatitude[8].toDouble(), coordinatesLongitude[8].toDouble())
+        val myPoswalk10 = LatLng(coordinatesLatitude[9].toDouble(), coordinatesLongitude[9].toDouble())
+        val myPoswalk11 = LatLng(coordinatesLatitude[10].toDouble(), coordinatesLongitude[10].toDouble())
+        val myPoswalk12 = LatLng(coordinatesLatitude[11].toDouble(), coordinatesLongitude[11].toDouble())
 
-            mMap.addMarker(themarker)
+        var themarker = MarkerOptions().position(myPoswalk1).title("Marker in Sydney").snippet("Titta lite text")
+        mMap.addMarker(themarker)
+        //      mMap.moveCamera(CameraUpdateFactory.newLatLng(fkip))
 
-         //   var camMove = CameraUpdateFactory.newLatLngZoom( myPoswalk, 20.0F)
-            var camMove = CameraUpdateFactory.newLatLngZoom( fkip, 20.0F)
+        themarker = MarkerOptions().position(myPoswalk2).title("Marker in Sydney").snippet("Titta lite text")
+        mMap.addMarker(themarker)
+        //   mMap.moveCamera(CameraUpdateFactory.newLatLng(fkip2))
+        themarker = MarkerOptions().position(myPoswalk3).title("Marker in Sydney").snippet("Titta lite text")
+        mMap.addMarker(themarker)
 
-            mMap.moveCamera(camMove)
-        }
+        themarker = MarkerOptions().position(myPoswalk4).title("Marker in Sydney").snippet("Titta lite text")
+        mMap.addMarker(themarker)
+
+        themarker = MarkerOptions().position(myPoswalk5).title("Marker in Sydney").snippet("Titta lite text")
+        mMap.addMarker(themarker)
+
+        themarker = MarkerOptions().position(myPoswalk6).title("Marker in Sydney").snippet("Titta lite text")
+        mMap.addMarker(themarker)
+
+        themarker = MarkerOptions().position(myPoswalk7).title("Marker in Sydney").snippet("Titta lite text")
+        mMap.addMarker(themarker)
+
+        themarker = MarkerOptions().position(myPoswalk8).title("Marker in Sydney").snippet("Titta lite text")
+        mMap.addMarker(themarker)
+
+        themarker = MarkerOptions().position(myPoswalk9).title("Marker in Sydney").snippet("Titta lite text")
+        mMap.addMarker(themarker)
+
+        themarker = MarkerOptions().position(myPoswalk10).title("Marker in Sydney").snippet("Titta lite text")
+        mMap.addMarker(themarker)
+
+        themarker = MarkerOptions().position(myPoswalk11).title("Marker in Sydney").snippet("Titta lite text")
+        mMap.addMarker(themarker)
+
+        themarker = MarkerOptions().position(myPoswalk12).title("Marker in Sydney").snippet("Titta lite text")
+        mMap.addMarker(themarker)
+
+
+
+        var camMove = CameraUpdateFactory.newLatLngZoom(myPoswalk1, 20.0F)
+
+        mMap.moveCamera(camMove)
+
     }
-/*
-    fun getLastKnownLocation() {
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-
-            return
-        }
-        fusedLocationClient.lastLocation
-            .addOnSuccessListener{ location ->
-                if (location != null) {
-
-                    val minc = LatLng(location!!.latitude, location!!.longitude)
-
-                    myPos = LatLng(location!!.latitude, location!!.longitude)
-
-                    var themarker = MarkerOptions().position(minc).title("Minc")
-                    mMap.addMarker(themarker)
-
-                    var camMove = CameraUpdateFactory.newLatLngZoom(minc, 20.0F)
-
-                    mMap.moveCamera(camMove)
-
-                    var latitudeMin = coordinatesLatitude[0] - 0.00000001
-                    var longitudeMin = coordinatesLongitude[0] - 0.00000001
-                    var latitudeMax = coordinatesLatitude[0] + 0.00000001
-                    var longitudeMax = coordinatesLongitude[0] + 0.00000001
-
-
-                    var currentLatitude = myPos.latitude.toFloat()
-                    var currentLongitude = myPos.longitude.toFloat()
-
-
-                    var diffenLat = (currentLatitude - coordinatesLatitude[0]) * 20000
-                    var diffenLong = (currentLongitude - coordinatesLongitude[0]) * 20000
-
-                    for (i in 0..11) {
-                        diffenLat = (currentLatitude - coordinatesLatitude[i]) * 20000
-                        diffenLong = (currentLongitude - coordinatesLongitude[i]) * 20000
-
-                        if ((diffenLat < 10) && (diffenLong < 10) && (questionFound[i] == false))
-                        {
-                            questionFound[i] = true
-                            playSound(true)
-                        }
-
-                    }
-
-                }
-            }
-    }*/
 
     fun playSound(start : Boolean) {
 
@@ -348,6 +266,8 @@ abstract class showWalk : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
     }
 
     fun readMapCoordinates(){
+        readFromFirebase += 1
+
         var count = 0
         //     for (i in 1..12) {
         var letter : String = "A"
@@ -474,37 +394,7 @@ abstract class showWalk : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
         mMap = googleMap
         return super.onCreateView(name, context, attrs)
     }
-    /*
-    override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
-    }*/
-/*
-    override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
 
-
-        mMap.setOnMarkerClickListener(this)
-        mMap.setOnInfoWindowClickListener(this)
-
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-
-            return
-        }
-        mMap.isMyLocationEnabled = true
-
-
-        var themarker = MarkerOptions().position(fkip).title("Marker in Sydney").snippet("Titta lite text")
-
-        mMap.addMarker(themarker)
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(fkip))
-    }*/
 
     fun countdownTwoSecond() {
         object : CountDownTimer(3000, 1000) {
@@ -520,150 +410,5 @@ abstract class showWalk : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
         }.start()
     }
 
-   /* override fun onMapReady(googleMap: GoogleMap) {
-        map = googleMap
-
-        val markerFkip = MarkerOptions()
-            .position(fkip)
-            .title("FKIP")
-        val markerMonas = MarkerOptions()
-            .position(monas)
-            .title("Monas")
-
-        map.addMarker(markerFkip)
-        map.addMarker(markerMonas)
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(monas, 11.6f))
-
-        val fromFKIP = fkip.latitude.toString() + "," + fkip.longitude.toString()
-        val toMonas = monas.latitude.toString() + "," + monas.longitude.toString()
-
-
-        val apiServices = RetrofitClient.apiServices(this)
-        apiServices.getDirection(fromFKIP, toMonas, "AIzaSyBknoMXiCPbVK_8nTehEylCk5z7CZZOM0g")
-            .enqueue(object : GeolocationPermissions.Callback<DirectionResponses> {
-                override fun onResponse(call: Call<DirectionResponses>, response: Response<DirectionResponses>) {
-                    drawPolyline(response)
-                    Log.d("bisa dong oke", response.message())
-                }
-
-                override fun onFailure(call: Call<DirectionResponses>, t: Throwable) {
-                   // Log.e("anjir error", t.localizedMessage)
-                //    Log.e("anjir error", t.localizedMessage)
-                }
-            })
-
-    }
-
-    private fun drawPolyline(response: Response<DirectionResponses>) {
-        val shape = response.body()?.routes?.get(0)?.overviewPolyline?.points
-        val polyline = PolylineOptions()
-            .addAll(PolyUtil.decode(shape))
-            .width(8f)
-            .color(Color.RED)
-        map.addPolyline(polyline)
-    }
-
-    private interface ApiServices {
-        @GET("maps/api/directions/json")
-        fun getDirection(@Query("origin") origin: String,
-                         @Query("destination") destination: String,
-                         @Query("key") apiKey: String): Call<DirectionResponses>
-    }
-
-    private object RetrofitClient {
-        fun apiServices(context: Context): ApiServices {
-            val retrofit = Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(context.resources.getString(R.string.base_url))
-                .build()
-
-            return retrofit.create<ApiServices>(ApiServices::class.java)
-        }
-    }
-    */
-
 }
 
-/*
-
-class MainActivity : AppCompatActivity(), OnMapReadyCallback {
-
-    private lateinit var map: GoogleMap
-    private lateinit var fkip: LatLng
-    private lateinit var monas: LatLng
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-    /*    fkip = LatLng(-6.3037978, 106.8693713)
-        monas = LatLng(-6.1890511, 106.8251573)*/
-
-        fkip = LatLng(55.67734515844318, 13.076061398152657)
-        monas = LatLng(55.675699664601616, 13.065890462255302)
-
-        val mapFragment = maps_view as SupportMapFragment
-        mapFragment.getMapAsync(this)
-    }
-
-    override fun onMapReady(googleMap: GoogleMap) {
-        map = googleMap
-
-        val markerFkip = MarkerOptions()
-                .position(fkip)
-                .title("FKIP")
-        val markerMonas = MarkerOptions()
-                .position(monas)
-                .title("Monas")
-
-        map.addMarker(markerFkip)
-        map.addMarker(markerMonas)
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(monas, 11.6f))
-
-        val fromFKIP = fkip.latitude.toString() + "," + fkip.longitude.toString()
-        val toMonas = monas.latitude.toString() + "," + monas.longitude.toString()
-
-        val apiServices = RetrofitClient.apiServices(this)
-        apiServices.getDirection(fromFKIP, toMonas, getString(R.string.api_key))
-                .enqueue(object : Callback<DirectionResponses> {
-                    override fun onResponse(call: Call<DirectionResponses>, response: Response<DirectionResponses>) {
-                        drawPolyline(response)
-                        Log.d("bisa dong oke", response.message())
-                    }
-
-                    override fun onFailure(call: Call<DirectionResponses>, t: Throwable) {
-                        Log.e("anjir error", t.localizedMessage)
-                    }
-                })
-
-    }
-
-    private fun drawPolyline(response: Response<DirectionResponses>) {
-        val shape = response.body()?.routes?.get(0)?.overviewPolyline?.points
-        val polyline = PolylineOptions()
-                .addAll(PolyUtil.decode(shape))
-                .width(8f)
-                .color(Color.RED)
-        map.addPolyline(polyline)
-    }
-
-    private interface ApiServices {
-        @GET("maps/api/directions/json")
-        fun getDirection(@Query("origin") origin: String,
-                         @Query("destination") destination: String,
-                         @Query("key") apiKey: String): Call<DirectionResponses>
-    }
-
-    private object RetrofitClient {
-        fun apiServices(context: Context): ApiServices {
-            val retrofit = Retrofit.Builder()
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl(context.resources.getString(R.string.base_url))
-                    .build()
-
-            return retrofit.create<ApiServices>(ApiServices::class.java)
-        }
-    }
-}
-
- */

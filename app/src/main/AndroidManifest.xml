@@ -15,6 +15,65 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LommaQuiz">
         <activity
+            android:name=".about_namn_pa_bingo"
+            android:exported="false" />
+        <activity
+            android:name=".ListSpecialWalk"
+            android:exported="false" />
+        <activity
+            android:name=".AboutBingo"
+            android:exported="false" />
+        <activity
+            android:name=".AboutQuiz"
+            android:exported="false" />
+        <activity
+            android:name=".CreateBingo"
+            android:exported="false" />
+        <activity
+            android:name=".ShowBingoCharts"
+            android:exported="false" />
+        <activity
+            android:name=".SeeImage"
+            android:exported="false" />
+        <activity
+            android:name=".LoginAuthFirebase"
+            android:exported="false" />
+        <activity
+            android:name=".CreateQuiz"
+            android:exported="false" />
+        <activity
+            android:name=".CreateWalk"
+            android:exported="false" />
+        <activity
+            android:name=".showQuestionsWithAnswer3"
+            android:exported="false" />
+        <activity
+            android:name=".showQuestions3"
+            android:exported="false"
+            android:label="@string/title_activity_show_questions3"
+            android:theme="@style/Theme.LommaQuiz.NoActionBar" />
+        <activity
+            android:name=".showQuestions2"
+            android:exported="false" />
+        <activity
+            android:name=".testActivity"
+            android:exported="false" />
+        <activity
+            android:name=".newfront"
+            android:exported="false" />
+        <activity
+            android:name=".login"
+            android:exported="false" />
+        <activity
+            android:name=".showQuestionWithAnswer"
+            android:exported="false" />
+        <activity
+            android:name=".showResult"
+            android:exported="false" />
+        <activity
+            android:name=".showMap"
+            android:exported="false" />
+        <activity
             android:name=".showQuestions"
             android:exported="false" />
         <activity
@@ -40,6 +99,10 @@
             android:exported="false"
             android:label="@string/title_activity_maps" />
         <activity
+            android:name=".MapsActivity2"
+            android:exported="false"
+            android:label="MapsActivity2" />
+        <activity
             android:name=".GoogleMapTest"
             android:exported="false" />
         <activity
@@ -49,8 +112,12 @@
             android:name=".choseSeeWalks"
             android:exported="false" />
         <activity
+            android:name=".choseSeeWalks2"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -61,6 +128,8 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-8259993070096099~5774390063" />
+
+        <service android:name=".TimerService" />
     </application>
 
 </manifest>

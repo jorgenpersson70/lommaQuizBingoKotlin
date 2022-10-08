@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/orange"
+    tools:context=".AboutQuiz">
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="0dp"
+        android:layout_height="703dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/white"
+        android:text="VÄLKOMMEN TILL FRÅGERUNDAN. I Lomma finns det 5 olika rundor att välja mellan. Det kan finnas en runda som är skapad i din ort. Tryck Back tryck VÄLJ PROMENAD, tryck SÖK RUNDA. Du kan skapa en egen runda om du gör så här: tryck Back, tryck LOGIN, tryck SKRIVRÄTTIGHETER, tryck SKAPA RUNDA, tryck Back, tryck Back, tryck VÄLJ PROMENAD, tryck SKAPA RUNDA. Gå runda och spara 12 koordinater. Lägg namnet på din runda på minnet, om du skapar bingobrickor och vill koppla till rundan så måste du veta namnet."
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

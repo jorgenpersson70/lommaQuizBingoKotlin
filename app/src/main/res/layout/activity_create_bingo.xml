@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F9A825"
+    tools:context=".CreateBingo">
+
+    <TextView
+        android:id="@+id/createBingoTV1"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/white"
+        android:backgroundTint="@color/white"
+        android:text="OBS! SKAPA GRUPPEN PRECIS FÖRE NI BÖRJAR RUNDAN. ANTAL DELTAGARE MÅSTE STÄMMA MED ANTALET SOM SEDAN LOGGAR IN. ANNARS KAN VINNANDE BRICKA VARA EN SOM ALDRIG ANVÄNDES."
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/createBingoTV2"
+        android:layout_width="372dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/orange"
+        android:text="SKRIV NAMN PÅ DIN BINGOGRUPP, MAX 15 TECKEN."
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createBingoTV1" />
+
+    <EditText
+        android:id="@+id/CreateBingoNameTV"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:hint="Namn på bingogrupp"
+        android:inputType="textPersonName"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createBingoTV2" />
+
+    <TextView
+        android:id="@+id/createBingoTV3"
+        android:layout_width="242dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/orange"
+        android:text="ANTAL DELTAGARE, MAX 10."
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CreateBingoNameTV" />
+
+    <EditText
+        android:id="@+id/createBingoCountTV"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:hint="Antal deltagare"
+        android:inputType="textPersonName"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createBingoTV3" />
+
+    <Button
+        android:id="@+id/infoBingoName"
+        android:layout_width="240dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/white"
+        android:text="Info om Namn på runda"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:cornerRadius="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createBingoCountTV" />
+
+    <Button
+        android:id="@+id/seeWalkListBtn"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp"
+        android:backgroundTint="@color/white"
+        android:text="SÖK RUNDA"
+        android:textColor="@color/black"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/infoBingoName" />
+
+    <Button
+        android:id="@+id/createBingoCharts"
+        android:layout_width="240dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="11dp"
+        android:backgroundTint="@color/white"
+        android:text="SKAPA BINGOBRICKOR"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:cornerRadius="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createBingoConnectTV" />
+
+    <TextView
+        android:id="@+id/createBingoTV4"
+        android:layout_width="0dp"
+        android:layout_height="136dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/white"
+        android:text="NU SKALL ALLA SOM SKALL GÅ RUNDAN LOGGA IN MED DET LÖSENORD SOM SKAPAREN AV BINGOGRUPPEN GER DELTAGARNA. LÖSENORDET VISAS NEDAN. VAR NOGA MED ATT DELTAGARNA VÄLJER SAMMA RUNDA NÄR DE STARTAR SÅVIDA INTE DENNA BINGORUNDA HAR KOPPLATS TILL EN BEFINTLIG RUNDA. TRYCK Back OCH VÄLJ LOGIN. SKRIV DITT LÖSEN DÄR DET STÅR, Skriv ditt Password bingo."
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createBingoCharts" />
+
+    <TextView
+        android:id="@+id/createBingoTV5"
+        android:layout_width="0dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/white"
+        android:text="LÖSEN ATT LOGGA IN MED"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createBingoTV4" />
+
+    <TextView
+        android:id="@+id/createBingoPasswordTV"
+        android:layout_width="0dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/white"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createBingoTV5" />
+
+    <TextView
+        android:id="@+id/createBingoConnectTV"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/white"
+        android:hint="Namn på runda"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/infoBingoName" />
+
+    <TextView
+        android:id="@+id/alertTV"
+        android:layout_width="100dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/white"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createBingoTV2" />
+
+    <TextView
+        android:id="@+id/alert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/createBingoCharts"
+        app:layout_constraintTop_toBottomOf="@+id/seeWalkListBtn" />
+</androidx.constraintlayout.widget.ConstraintLayout>

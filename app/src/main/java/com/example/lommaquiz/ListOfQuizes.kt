@@ -15,15 +15,16 @@ import com.google.firebase.ktx.Firebase
 var quizNameListID = ArrayList<String>()
 var quizNameList = ArrayList<String>()
 var quizNameListUser = ArrayList<String>()
-var countQuizWalks = 0
+var countQuizWalks2 = 0
 
-var QuizPositionSelect = 1000
+//var QuizPositionSelect = 1000
+var finich = false
 
 
 
 class ListOfQuizes : AppCompatActivity() {
     private lateinit var database: DatabaseReference
-    private lateinit var database2: DatabaseReference
+  //  private lateinit var database2: DatabaseReference
     private lateinit var binding: ActivityListOfQuizesBinding
 
     var minAdapter = MyAdapter(this)
@@ -35,11 +36,26 @@ class ListOfQuizes : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_of_quizes)
 
+      //  intent.putExtra("from", "choseSeeWalks")
+        var FromWhere = intent.getStringExtra("from").toString()
+
+        // want to change
+        if ( FromWhere == "choseSeeWalks"){
+            minAdapter.change(true)
+        }
+
+        // want to start walk
+        if ( FromWhere == "MainActivity"){
+            minAdapter.change(false)
+        }
+
+
         binding = ActivityListOfQuizesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         database = Firebase.database("https://fire1-95766-default-rtdb.europe-west1.firebasedatabase.app").reference
-        database2 = Firebase.database("https://fire1-95766-default-rtdb.europe-west1.firebasedatabase.app").reference
+    //    database2 = Firebase.database("https://fire1-95766-default-rtdb.europe-west1.firebasedatabase.app").reference
+
 
 
         var myRecyclerView = findViewById<RecyclerView>(R.id.myRecycler)
@@ -47,30 +63,27 @@ class ListOfQuizes : AppCompatActivity() {
             myRecyclerView.layoutManager = LinearLayoutManager(this)
             myRecyclerView.adapter = minAdapter
 
-
-
+      //  myRecyclerView.adapter.ch
 
         loadQuizNames()
-        countQuizWalks = 1
-  //      minAdapter.names.add("hej")
-  //      minAdapter.notifyDataSetChanged()
-
-     /*   testa()*/
-
-
+        countdownSecond()
 
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+     //   finich = false
+    }
     fun loadQuizNames() {
         var i = 0
+        readFromFirebase += 1
 
-        //      ref.child("QuizWalks").child("QuizNameList").getData
-
-        //
         database.child("QuizWalks").child("QuizNameList").get().addOnSuccessListener {
             Log.i("firebase", "Got value ${it.value}")
             //  for (snapchild in it.children) {
 
+            quizNameListID.clear()
+            countQuizWalks2 = 0
             for (snapchild in it.children) {
 
                 var tempshop = snapchild.getValue()!!
@@ -79,24 +92,20 @@ class ListOfQuizes : AppCompatActivity() {
                 Log.i("MIN", "QuiznameID " + snapchild.key.toString())
                 //   mapNames.add("Walk1")
                 i += 1
-                countQuizWalks += 1
+                countQuizWalks2 += 1
             }
+      //     quizNameListID.add("testa")
+            Log.i("MIN", "count walks"+ countQuizWalks2.toString())
+            quizNameList.clear()
+            quizNameListUser.clear()
 
-    //        database.child("QuizWalks").child("QuizNameList").child("-MnRBeG98PiILirwtJKW").get().addOnSuccessListener {
-      //                 Log.i("firebase", "Got value ${it.value}")
-        //    for (m in 0..(countQuizWalks-1)) {
-
-     //       var hej = findViewById<TextView>(R.id.countQuizTV)
-    //        hej.text = countQuizWalks.toString()
-       //     hej.text = "vadå ?"
-      //      binding.countQuizTV.text = countQuizWalks.toString()
-
-            for (m in 0..(countQuizWalks-2)) {
+            for (m in 0..(countQuizWalks2-1)) {
                 database.child("QuizWalks").child("QuizNameList").child(quizNameListID[m].toString()).get()
                     .addOnSuccessListener {
                         Log.i("firebase", "Got value ${it.value}")
 
                         var i = 0
+
                         for (snapchild in it.children) {
 
                             var tempshop = snapchild.getValue()!!
@@ -104,123 +113,90 @@ class ListOfQuizes : AppCompatActivity() {
                             if (snapchild.key == "name") {
                                 Log.i("MIN", "name " + tempshop.toString())
                                 quizNameList.add(tempshop.toString())
-                                //  Log.i("MIN", "name " + snapchild.key.toString())
-                                minAdapter.names.add(tempshop.toString())
-                                //              minAdapter.names.add("svejs")
-                                minAdapter.notifyDataSetChanged()
+
+                      //          minAdapter.names.add(tempshop.toString())
+
+         //                       minAdapter.notifyDataSetChanged()
                             }
                             if (snapchild.key == "user") {
                                 Log.i("MIN", "user " + tempshop.toString())
                                 quizNameListUser.add(tempshop.toString())
                                 Log.i("MIN", "user " + tempshop.toString())
                             }
-                            //   minAdapter.names.add("testar")
 
-                            //     quizNameList.add(snapchild.key.toString())
-                            //       Log.i("MIN", "Quizname " + snapchild.key.toString())
                         }
+             //           finich = true
                     }
             }
-   /*                 .addOnFailureListener {
-                        Log.e("firebase", "Error getting data", it)
-                    }*/
+            finich = true
 
-
-            }.addOnFailureListener {
-            Log.e("firebase", "Error getting data", it)
-        }
-     //   minAdapter.notifyDataSetChanged()
-    }
-
-    fun testa(){
-
-        database.child("QuizWalks").child("QuizNameList").get().addOnSuccessListener {
-            Log.i("firebase", "Got value ${it.value}")
-            //  for (snapchild in it.children) {
-
-            for (snapchild in it.children) {
-
-                var tempshop = snapchild.getValue()!!
-
-                quizNameListID.add(snapchild.key.toString())
-                Log.i("MIN", "QuiznameID " + snapchild.key.toString())
-                //   mapNames.add("Walk1")
-      //          i += 1
-                countQuizWalks += 1
-            }
 
         }.addOnFailureListener {
             Log.e("firebase", "Error getting data", it)
-        }
-
-
-
-        for (j in 0..countQuizWalks){
-
-  /*          database2.child("QuizWalks").child("QuizNameList").get().addOnSuccessListener {
-                Log.i("firebase", "Got value ${it.value}")
-                //  for (snapchild in it.children) {
-
-                for (snapchild in it.children) {
-
-                    var tempshop = snapchild.getValue()!!
-                }
-            }*/
-
-
-  //          database.child("QuizWalks").child("QuizNameList").child("-MnRBeG98PiILirwtJKW").get().addOnSuccessListener {
-  //              Log.i("firebase", "Got value ${it.value}")
-                //  for (snapchild in it.children) {
-            database.child("QuizWalks").child("QuizNameList").get().addOnSuccessListener {
-                Log.i("firebase", "Got value ${it.value}")
-
-                var i = 0
-                for (snapchild in it.children) {
-
-                    var tempshop = snapchild.getValue()!!
-
-                    if (snapchild.key == "name") {
-                        Log.i("MIN", "name " + tempshop.toString())
-                        quizNameList.add(snapchild.key.toString())
-                        Log.i("MIN", "name " + snapchild.key.toString())
-                    }
-                    if (snapchild.key == "user") {
-                        Log.i("MIN", "user " + tempshop.toString())
-                        quizNameListUser.add(snapchild.key.toString())
-                        Log.i("MIN", "user " + snapchild.key.toString())
-                    }
-
-                    //     quizNameList.add(snapchild.key.toString())
-                    //       Log.i("MIN", "Quizname " + snapchild.key.toString())
-                }
-            }
-                .addOnFailureListener {
-                    Log.e("firebase", "Error getting data", it)
-                }
 
         }
-        for (j in 0..countQuizWalks) {
-            //    minAdapter.names.add(quizNameList[0].toString())
-            //    minAdapter.names.add("hejsan")
-            Log.i("MIN", "user " + quizNameList[j].toString())
-        }
-        minAdapter.notifyDataSetChanged()
+
     }
+
+
+
+
 
     fun countdownSecond() {
         object : CountDownTimer(2000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
+
             }
 
             override fun onFinish() {
-                /*
-if (QuizPositionSelect != 1000){
-               val intent = Intent(this, showQuestions::class.java)
-            intent.putExtra("QuizName", "hej")
-            startActivity(intent)
-}*/
-                countdownSecond()
+                if (finich) {
+//                    finich = false
+                    minAdapter.names.clear()
+
+                    if ((loggedIn != "") || testerLoggedIn){
+                        Log.i("MIN", "name hej hej"+ loggedIn.toString())
+                        for (m in 0..(countQuizWalks2 - 1)) {
+                            //                          Log.i("MIN", "name hej hej"+ quizNameListUser[m].toString())
+                            if ((quizNameListUser[m] == loggedIn) || testerLoggedIn) {
+                                minAdapter.names.add(quizNameList[m])
+                                if (specialWalk){
+                                    walkName = quizNameList[m]
+                                }
+                            }
+                        }
+
+                        //                      checkIfSpecialWalk()
+                    }
+                    for (m in 0..(countQuizWalks2 - 1)) {
+                        if (quizNameListUser[m] == "everyone") {
+                            minAdapter.names.add(quizNameList[m])
+                        }
+
+                    }
+                    minAdapter.notifyDataSetChanged()
+                }
+
             }
         }.start()
+    }
+
+    fun checkIfSpecialWalk(){
+        // loggedIn
+        var testa = "malin"
+        readFromFirebase += 1
+
+  //      database.child("QuizWalks").child("maps").child(walkName.toString()).get()
+        database.child("QuizWalks").child("maps").child(testa).get()
+            .addOnSuccessListener {
+
+                val tempCoordinatelist = mutableListOf<mapCoordinates>()
+
+               // If special walk is there, then leave it up to showMap to read coordinates
+                walkName = testa
+ /*               for (snapchild in it.children) {
+                    Log.i("MIN", "special")
+                }*/
+
+            }
     }
 }

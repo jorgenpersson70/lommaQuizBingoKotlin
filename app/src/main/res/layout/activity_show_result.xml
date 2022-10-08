@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/orange"
+    tools:context=".showResult">
+
+    <Button
+        android:id="@+id/showResQuest1Btn"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="61dp"
+        android:layout_marginTop="26dp"
+        android:backgroundTint="@color/white"
+        android:text="fråga 1"
+        android:textColor="@color/black"
+        app:cornerRadius="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/showResQuest2Btn"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="61dp"
+        android:backgroundTint="@color/white"
+        android:text="fråga 2"
+        android:textColor="@color/black"
+        app:cornerRadius="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showResQuest1Btn" />
+
+    <Button
+        android:id="@+id/showResQuest3Btn"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="61dp"
+        android:backgroundTint="@color/white"
+        android:text="fråga 3"
+        android:textColor="@color/black"
+        app:cornerRadius="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showResQuest2Btn" />
+
+    <Button
+        android:id="@+id/showResQuest4Btn"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="61dp"
+        android:backgroundTint="@color/white"
+        android:text="fråga 4"
+        android:textColor="@color/black"
+        app:cornerRadius="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showResQuest3Btn" />
+
+    <Button
+        android:id="@+id/showResQuest5Btn"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="61dp"
+        android:backgroundTint="@color/white"
+        android:text="fråga 5"
+        android:textColor="@color/black"
+        app:cornerRadius="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showResQuest4Btn" />
+
+    <Button
+        android:id="@+id/showResQuest6Btn"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="61dp"
+        android:backgroundTint="@color/white"
+        android:text="fråga 6"
+        android:textColor="@color/black"
+        app:cornerRadius="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showResQuest5Btn" />
+
+    <Button
+        android:id="@+id/showResQuest7Btn"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="61dp"
+        android:backgroundTint="@color/white"
+        android:text="fråga 7"
+        android:textColor="@color/black"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/showResQuest8Btn"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="61dp"
+        android:backgroundTint="@color/white"
+        android:text="fråga 8"
+        android:textColor="@color/black"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showResQuest7Btn" />
+
+    <Button
+        android:id="@+id/showResQuest9Btn"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="61dp"
+        android:backgroundTint="@color/white"
+        android:text="fråga 9"
+        android:textColor="@color/black"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showResQuest8Btn" />
+
+    <Button
+        android:id="@+id/showResQuest10Btn"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="61dp"
+        android:backgroundTint="@color/white"
+        android:text="fråga 10"
+        android:textColor="@color/black"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showResQuest9Btn" />
+
+    <Button
+        android:id="@+id/showResQuest11Btn"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="61dp"
+        android:backgroundTint="@color/white"
+        android:text="fråga 11"
+        android:textColor="@color/black"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showResQuest10Btn" />
+
+    <Button
+        android:id="@+id/showResQuest12Btn"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="61dp"
+        android:backgroundTint="@color/white"
+        android:text="fråga 12"
+        android:textColor="@color/black"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showResQuest11Btn" />
+
+    <Button
+        android:id="@+id/goBackBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/white"
+        android:text="avbryt"
+        android:textColor="@color/black"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showResQuest6Btn" />
+</androidx.constraintlayout.widget.ConstraintLayout>

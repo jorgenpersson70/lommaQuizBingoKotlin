@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/orange"
+    tools:context=".AboutBingo">
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="0dp"
+        android:layout_height="317dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/white"
+        android:text="Man skapar bingobrickor genom att: Tryck Back, tryck LOGIN, tryck SKRIVRÄTTIGHET, tryck SKAPA BINGORUNDA, tryck Back, tryck Back, tryck SKAPA BINGORUNDA. Vill du koppla bingorundan till en egen runda så skapa först en runda genom att följa anvisningarna i nästa ruta. Efter det, följ vad jag nyss skrev. Om ingen egen runda kopplas så får varje användare välja runda."
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="0dp"
+        android:layout_height="382dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="4dp"
+        android:background="@color/white"
+        android:text="Man kan skapa en egen runda (koordinater) genom att: Tryck Back, tryck LOGIN, tryck SKRIVRÄTTIGHET, tryck LOGOUT, tryck SKAPA RUNDA, tryck Back, tryck Back, tryck VÄLJ PROMENAD, tryck SKAPA RUNDA, skriv ett namn på rundan, gå rundan och spara 12 koordinater på vägen. Lägg rundans namn på minnet. Detta namn kan nu anvädas till att koppla till en bingorunda. Sök upp namnet på rundan när bingobrickor skapas."
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+</androidx.constraintlayout.widget.ConstraintLayout>

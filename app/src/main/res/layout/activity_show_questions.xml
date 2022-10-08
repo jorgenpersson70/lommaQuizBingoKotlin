@@ -4,75 +4,119 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/orange"
     tools:context=".showQuestions">
 
     <TextView
         android:id="@+id/showChosenQuizTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="188dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
         android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/questionTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/white"
+        android:paddingStart="5dp"
         android:text="TextView"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/answer1TV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/showChosenQuizTV" />
+        app:layout_constraintTop_toBottomOf="@+id/showQuestionImage" />
 
     <TextView
         android:id="@+id/answer1TV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="26dp"
+        android:layout_width="0dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingStart="5dp"
         android:text="TextView"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/answer2TV"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/answerBtn1" />
 
     <TextView
         android:id="@+id/answer2TV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="27dp"
+        android:layout_width="0dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingStart="5dp"
         android:text="TextView"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/answer3TV"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/answerBtn2" />
 
     <TextView
         android:id="@+id/answer3TV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="51dp"
+        android:layout_width="0dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="2dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingStart="5dp"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/listenUrlBtn"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/answerBtn3" />
 
     <Button
         android:id="@+id/answerBtn1"
+        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="46dp"
         android:layout_height="46dp"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/white"
+        android:backgroundTintMode="add"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
         android:text="1"
+        android:textColor="@color/black"
+        app:cornerRadius="10dp"
         app:layout_constraintBottom_toTopOf="@+id/answerBtn2"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/answerBtn2"
+        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="46dp"
         android:layout_height="46dp"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/white"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
         android:text="X"
+        android:textColor="@color/black"
+        app:cornerRadius="10dp"
         app:layout_constraintBottom_toTopOf="@+id/answerBtn3"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -81,8 +125,48 @@
         android:layout_width="46dp"
         android:layout_height="46dp"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="51dp"
+        android:backgroundTint="@color/white"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
         android:text="2"
+        android:textColor="@color/black"
+        app:cornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/testBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="227dp"
+        android:text="Button"
+        app:layout_constraintStart_toEndOf="@+id/questionTV"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/listenUrlBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:backgroundTint="@color/white"
+        android:text="lyssna"
+        android:textColor="@color/black"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/showQuestionImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/questionTV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showChosenQuizTV"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

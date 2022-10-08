@@ -1,11 +1,17 @@
 package com.example.lommaquiz
 
 import android.Manifest
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.AttributeSet
 import android.util.Log
+import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 
@@ -19,52 +25,121 @@ import com.example.lommaquiz.databinding.ActivityMapsBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlin.math.roundToInt
 
 var justOnce = true
+var walkName : String = "Walk1"
+var oneTimerStarted = false
+private lateinit var mMap: GoogleMap
+
+var coordinatesReadCount = 0
+
+var onCreateVar = 0
+var onMapReadyVar = 0
+var coordinatesRead = false
+
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
+    private var timerStarted = false
+    private lateinit var serviceIntent : Intent
+  //  private  var serviceIntent? : Intent? = null
+    private var time = 0.0
+
     private lateinit var database: DatabaseReference
 
-    private lateinit var mMap: GoogleMap
-    private lateinit var binding: ActivityMapsBinding
+//    private lateinit var mMap: GoogleMap
+ //   private lateinit var binding: Ac
 
     private lateinit var fkip: LatLng
     private lateinit var fkip2: LatLng
 
-    private lateinit var walkName : String
+    var countSeconds = 0
+    var walkNameHere = ""
+
+  //  private CountDownTimer : mytimer
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        walkName = intent.getStringExtra("walk").toString()
+        serviceIntent = Intent(applicationContext, TimerService::class.java)
+        registerReceiver(updateTime, IntentFilter(TimerService.TIMER_UPDATED))
+
+
+        walkNameHere = intent.getStringExtra("walk").toString()
+
+
+
 
    //     database = Firebase.database("https://kotlin2feb-default-rtdb.europe-west1.firebasedatabase.app").reference
         database = Firebase.database("https://fire1-95766-default-rtdb.europe-west1.firebasedatabase.app").reference
 
-        binding = ActivityMapsBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+  /*      binding = ActivityMapsBinding.inflate(layoutInflater)
+        setContentView(binding.root)*/
+
+
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map4) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
-        binding.drawMapBtn.setOnClickListener {
-            val minc = LatLng(55.6112032506648, 12.994412054721224)
-
-            var themarker = MarkerOptions().position(minc).title("Minc")
-            mMap.addMarker(themarker)
-
-            var camMove = CameraUpdateFactory.newLatLngZoom(minc, 15.0F)
-
-            mMap.moveCamera(camMove)
-        }
-
-        readMapCoordinates()
-        countdownSecond()
-
+  //      readMapCoordinates()
 
     }
+
+    override fun onStart() {
+        super.onStart()
+      //  startStopTimer()
+    }
+
+    override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
+     //   startStopTimer()
+        return super.onCreateView(name, context, attrs)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+  //      startStopTimer()
+        super.onRestoreInstanceState(savedInstanceState)
+    }
+
+    override fun onActivityReenter(resultCode: Int, data: Intent?) {
+  //      startStopTimer()
+        super.onActivityReenter(resultCode, data)
+    }
+
+    override fun onResume() {
+    //    startStopTimer()
+
+        super.onResume()
+    }
+
+    override fun onBackPressed()
+    {
+
+        resetTimer()
+        countSeconds = 0
+  //      justOnce = true
+
+
+
+
+        finish()
+    }
+
+  /*  fun Fragment.hideKeyboard() {
+        view?.let { activity?.hideKeyboard(it) }
+    }
+
+    fun Activity.hideKeyboard() {
+        hideKeyboard(currentFocus ?: View(this))
+    }
+
+    fun Context.hideKeyboard(view: View) {
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+    }*/
+
 
     /**
      * Manipulates the map once available.
@@ -75,31 +150,44 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+
+
+  //  override fun onBackPressed()
+
     override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
 
-      /*  mMap.setOnMarkerClickListener(this@activity_maps)
-        mMap.setOnInfoWindowClickListener(this)
+//
+    //    if (!oneTimerStarted){
+            mMap = googleMap
+   //     }
 
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
 
-            return
+
+        // biblan 55.6753453411057, 13.069870992431357
+
+        val biblan = LatLng(55.6753453411057, 13.069870992431357)
+             mMap.addMarker(MarkerOptions().position(biblan).title("Lomma bibliotek"))
+             mMap.moveCamera(CameraUpdateFactory.newLatLng(biblan))
+
+
+        startStopTimer()
+
+        justOnce = true
+
+        coordinatesRead = false
+        readMapCoordinates()
+
+        // krasch ?
+        if (!oneTimerStarted) {
+            showWalk()
         }
 
-        mMap.isMyLocationEnabled = true*/
+        onMapReadyVar += 1
 
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-             mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-             mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+
     }
+
+
 
     fun doLocationPermission()
     {
@@ -130,9 +218,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION))
     }
-
+/*
     fun countdownSecond() {
-        object : CountDownTimer(5000, 1000) {
+        object : CountDownTimer(2000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
             }
 
@@ -142,30 +230,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 fkip2 = LatLng(55.57734515844318, 13.876061398152657)
 
                 if (justOnce) {
-                    justOnce = false
+                   justOnce = false
                     showWalk()
                 }
                 countdownSecond()
             }
         }.start()
-    }
+    }*/
 
     fun showWalk(){
-        binding.latNyTV.text = coordinatesLatitude[0].toString()
-        binding.longNyTV.text = coordinatesLongitude[0].toString()
-
-   /*     for (i in 0..1) {
-            val myPoswalk = LatLng(coordinatesLatitude[i].toDouble(), coordinatesLongitude[i].toDouble())
-
-            var themarker = MarkerOptions().position( myPoswalk).title("Minc")
-            mMap.addMarker(themarker)
-
-            var camMove = CameraUpdateFactory.newLatLngZoom( myPoswalk, 30.0F)
-
-            mMap.moveCamera(camMove)
-        }*/
-
-  //      var themarker = MarkerOptions().position(fkip).title("Marker in Sydney").snippet("Titta lite text")
         val myPoswalk1 = LatLng(coordinatesLatitude[0].toDouble(), coordinatesLongitude[0].toDouble())
         val myPoswalk2 = LatLng(coordinatesLatitude[1].toDouble(), coordinatesLongitude[1].toDouble())
         val myPoswalk3 = LatLng(coordinatesLatitude[2].toDouble(), coordinatesLongitude[2].toDouble())
@@ -179,57 +252,61 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val myPoswalk11 = LatLng(coordinatesLatitude[10].toDouble(), coordinatesLongitude[10].toDouble())
         val myPoswalk12 = LatLng(coordinatesLatitude[11].toDouble(), coordinatesLongitude[11].toDouble())
 
-        var themarker = MarkerOptions().position(myPoswalk1).title("Marker in Sydney").snippet("Titta lite text")
-        mMap.addMarker(themarker)
-  //      mMap.moveCamera(CameraUpdateFactory.newLatLng(fkip))
+        mMap.clear()
 
-        themarker = MarkerOptions().position(myPoswalk2).title("Marker in Sydney").snippet("Titta lite text")
-        mMap.addMarker(themarker)
-     //   mMap.moveCamera(CameraUpdateFactory.newLatLng(fkip2))
-        themarker = MarkerOptions().position(myPoswalk3).title("Marker in Sydney").snippet("Titta lite text")
+        var themarker = MarkerOptions().position(myPoswalk1).title("Fråga 1")
+  //      var themarker = MarkerOptions().position(myPoswalk1).title("Fråga 1")
         mMap.addMarker(themarker)
 
-        themarker = MarkerOptions().position(myPoswalk4).title("Marker in Sydney").snippet("Titta lite text")
+        themarker = MarkerOptions().position(myPoswalk2).title("Fråga 2")
         mMap.addMarker(themarker)
 
-        themarker = MarkerOptions().position(myPoswalk5).title("Marker in Sydney").snippet("Titta lite text")
+        themarker = MarkerOptions().position(myPoswalk3).title("Fråga 3")
         mMap.addMarker(themarker)
 
-        themarker = MarkerOptions().position(myPoswalk6).title("Marker in Sydney").snippet("Titta lite text")
+        themarker = MarkerOptions().position(myPoswalk4).title("Fråga 4")
+
+        themarker = MarkerOptions().position(myPoswalk5).title("Fråga 5")
         mMap.addMarker(themarker)
 
-        themarker = MarkerOptions().position(myPoswalk7).title("Marker in Sydney").snippet("Titta lite text")
+        themarker = MarkerOptions().position(myPoswalk6).title("Fråga 6")
         mMap.addMarker(themarker)
 
-        themarker = MarkerOptions().position(myPoswalk8).title("Marker in Sydney").snippet("Titta lite text")
+        themarker = MarkerOptions().position(myPoswalk7).title("Fråga 7")
         mMap.addMarker(themarker)
 
-        themarker = MarkerOptions().position(myPoswalk9).title("Marker in Sydney").snippet("Titta lite text")
+        themarker = MarkerOptions().position(myPoswalk8).title("Fråga 8")
         mMap.addMarker(themarker)
 
-        themarker = MarkerOptions().position(myPoswalk10).title("Marker in Sydney").snippet("Titta lite text")
+        themarker = MarkerOptions().position(myPoswalk9).title("Fråga 9")
         mMap.addMarker(themarker)
 
-        themarker = MarkerOptions().position(myPoswalk11).title("Marker in Sydney").snippet("Titta lite text")
+        themarker = MarkerOptions().position(myPoswalk10).title("Fråga 10")
         mMap.addMarker(themarker)
 
-        themarker = MarkerOptions().position(myPoswalk12).title("Marker in Sydney").snippet("Titta lite text")
+        themarker = MarkerOptions().position(myPoswalk11).title("Fråga 11")
         mMap.addMarker(themarker)
 
-
+        themarker = MarkerOptions().position(myPoswalk12).title("Fråga 12")
+        mMap.addMarker(themarker)
 
         var camMove = CameraUpdateFactory.newLatLngZoom(myPoswalk1, 15.0F)
 
         mMap.moveCamera(camMove)
-
     }
 
-    fun readMapCoordinates() {
-        var count = 0
-        //     for (i in 1..12) {
-        var letter: String = "A"
 
-    //    Log.i("MIN", "mapname " + mapNames[0])
+
+    fun readMapCoordinates() {
+
+        readFromFirebase += 1
+
+        var count = 0
+
+        coordinatesRead = false
+
+        coordinatesReadCount = 0
+        var letter: String = "A"
 
         for (i in 0..11) {
 
@@ -281,13 +358,43 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 letter = "L"
             }
 
-            //walkName
-   //         database.child("QuizWalks").child("maps").child(mapNames[0]).child(letter).get()
-   //             .addOnSuccessListener {
-            database.child("QuizWalks").child("maps").child(walkName).child(letter).get()
+
+            if (walkNameHere == "malin") {
+                database.child("QuizWalks").child("maps").child("malin").child(letter).get()
+                    .addOnSuccessListener {
+
+                        val tempCoordinatelist = mutableListOf<mapCoordinates>()
+
+                        for (snapchild in it.children) {
+
+                            var tempshop = snapchild.getValue()!!
+
+
+                            if (snapchild.key == "posLatitude") {
+                                coordinatesLatitude[i] = tempshop.toString().toFloat()
+                                Log.i("MIN", "LAT " + tempshop.toString())
+                            }
+
+                            if (snapchild.key == "posLongitude") {
+                                coordinatesLongitude[i] = tempshop.toString().toFloat()
+                                Log.i("MIN", "LONG " + tempshop.toString())
+                            }
+
+                            count += 1
+                        }
+                        coordinatesReadCount += 1
+                        if (letter == "L") {
+                            coordinatesRead = true
+                        }
+
+
+                    }.addOnFailureListener {
+                        Log.e("firebase", "Error getting data", it)
+                    }
+
+        }else{
+            database.child("QuizWalks").child("maps").child(walkNameHere).child(letter).get()
                 .addOnSuccessListener {
-                    //         database.child("QuizWalks").child("maps").child("Walk1").child("A").get()
-                    //             .addOnSuccessListener {
 
                     val tempCoordinatelist = mutableListOf<mapCoordinates>()
 
@@ -297,33 +404,115 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
                         if (snapchild.key == "posLatitude") {
-                            //                         binding.latTV.text = snapchild.value.toString()
-                            //                         binding.latTV.text = tempshop.toString()
                             coordinatesLatitude[i] = tempshop.toString().toFloat()
-
-                            //   binding.latTV.text = "HEJ"
                             Log.i("MIN", "LAT " + tempshop.toString())
                         }
 
                         if (snapchild.key == "posLongitude") {
-                            //                binding.longTV.text = snapchild.value.toString()
-                            //                      binding.longTV.text = tempshop.toString()
                             coordinatesLongitude[i] = tempshop.toString().toFloat()
-
-                            //     binding.longTV.text = "SVEJS"
                             Log.i("MIN", "LONG " + tempshop.toString())
                         }
 
                         count += 1
-
                     }
+                    coordinatesReadCount += 1
+                    if (letter == "L") {
+                        coordinatesRead = true
+                    }
+
 
                 }.addOnFailureListener {
                     Log.e("firebase", "Error getting data", it)
                 }
-
-            //      database.child("QuizWalks").child("maps").child("Walk1").child("B").get()
-            //          .addOnSuccessListener {
         }
+        }
+
+
+
+
+    }
+
+    private val updateTime: BroadcastReceiver = object : BroadcastReceiver()
+    {
+        override fun onReceive(context: Context?, intent: Intent) {
+            time = intent.getDoubleExtra(TimerService.TIMER_EXTRA, 0.0)
+
+            fkip = LatLng(55.67734515844318, 13.976061398152657)
+            fkip2 = LatLng(55.57734515844318, 13.876061398152657)
+
+            countSeconds += 1
+
+            // first time and then every 10 seconds
+       //     if ((countSeconds == 1) || ((countSeconds % 10) == 1))
+
+
+          if ((countSeconds % 4) == 2)
+            {
+                if ((justOnce) && (coordinatesRead)) {
+                    justOnce = false
+                    showWalk()
+                }
+            }
+
+   /*         if (justOnce) {
+                if ((countSeconds % 5) == 4)
+               {
+
+                    justOnce = false
+                    showWalk()
+                }
+            }*/
+
+
+        }
+    }
+
+    private fun getTimeStringFromDouble(time: Double): String{
+        val resultInt = time.roundToInt()
+        val hours = resultInt % 86488 / 3600
+        val minutes = resultInt % 86488 % 3600 / 60
+        val seconds = resultInt % 86488 % 3600 % 60
+
+        return makeTimeString(hours, minutes, seconds)
+    }
+
+    private fun makeTimeString(hour: Int, min: Int, sec: Int): String = String.format("%02d:%02d:%02d", hour, min, sec)
+
+    private fun resetTimer(){
+        stopTimer()
+        time = 0.0
+        countSeconds = 0
+
+
+    // testar
+    //    justOnce = true
+    }
+
+    private fun startStopTimer(){
+    //    if (!oneTimerStarted) {
+            if (timerStarted)
+                stopTimer()
+            else
+                startTimer()
+    //    }
+    }
+
+    private fun startTimer() {
+    //    if (!oneTimerStarted) {
+            oneTimerStarted = true
+            serviceIntent.putExtra(TimerService.TIMER_EXTRA, time)
+            startService(serviceIntent)
+
+            //     binding.startStopBtn.icon =
+            timerStarted = true
+   //     }
+    }
+
+    private fun stopTimer() {
+        serviceIntent.putExtra(TimerService.TIMER_EXTRA, time)
+        stopService(serviceIntent)
+
+        //     binding.startStopBtn.icon =
+        timerStarted = false
     }
 }

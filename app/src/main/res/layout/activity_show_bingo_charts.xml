@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+    android:background="@color/orange"
+tools:context=".ShowBingoCharts">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/nyRV"
+        android:layout_width="204dp"
+        android:layout_height="194dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/nyRV2"
+        android:layout_width="204dp"
+        android:layout_height="194dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nyRV" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/nyRV3"
+        android:layout_width="204dp"
+        android:layout_height="194dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nyRV2" />
+
+    <TextView
+        android:id="@+id/winBTV"
+        android:layout_width="30dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:text="B"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/winNTV"
+        android:layout_width="30dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:text="N"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/winITV"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/winGTV"
+        android:layout_width="30dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:text="G"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/winNTV"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/winOTV"
+        android:layout_width="30dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:text="O"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/winGTV"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/winITV"
+        android:layout_width="30dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:text="I"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/winBTV"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/showAllBingoValuesRV"
+        android:layout_width="150dp"
+        android:layout_height="220dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toEndOf="@+id/nyRV"
+        app:layout_constraintTop_toBottomOf="@+id/winBTV" />
+
+    <Button
+        android:id="@+id/goToNextPosBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:backgroundTint="@color/white"
+        android:text="NÄSTA"
+        android:textColor="@color/black"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/weHaveAWinnerTV"
+        android:layout_width="148dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/nyRV2"
+        app:layout_constraintTop_toBottomOf="@+id/showAllBingoValuesRV" />
+
+    <TextView
+        android:id="@+id/proofOfWinnerAlertTV"
+        android:layout_width="148dp"
+        android:layout_height="122dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/nyRV3"
+        app:layout_constraintTop_toBottomOf="@+id/weHaveAWinnerTV" />
+
+    <Button
+        android:id="@+id/quitBingoBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:backgroundTint="@color/white"
+        android:text="AVBRYT"
+        android:textColor="@color/black"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/testasmackBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginBottom="21dp"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/goToNextPosBtn"
+        app:layout_constraintStart_toEndOf="@+id/quitBingoBtn" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="10dp"
+        android:text="Pos"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/bingoPosTV"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/bingoPosTV"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/white"
+        android:gravity="center_horizontal|center_vertical"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
