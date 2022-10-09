@@ -16,7 +16,7 @@ android {
         applicationId "lommaquiz.lommaquiz"
         minSdk 24
         targetSdk 32
-        versionCode 14
+        versionCode 20
         versionName "2.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
