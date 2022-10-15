@@ -44,6 +44,7 @@ var prevNumbers: ArrayList<Int> = ArrayList(
     )
 ) as ArrayList<Int>
 
+var BlockNextButton = false
 
 class ShowBingoCharts : AppCompatActivity() {
 
@@ -56,6 +57,7 @@ class ShowBingoCharts : AppCompatActivity() {
     var minAdapter4 = BingoAllNbrAdaptor()
     var QuestionNumberString = "0"
     var QuestionNumberInt = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -120,6 +122,8 @@ class ShowBingoCharts : AppCompatActivity() {
                         binding.proofOfWinnerAlertTV.visibility = View.VISIBLE
                         binding.weHaveAWinnerTV.text = "Grattis, du har fått BINGO. Har ni satsat något, du och de andra deltagarna? En fika, kaffe, eller vem som skall diska eller dammsuga."
                         binding.proofOfWinnerAlertTV.text = "OBS! När du trycker NÄSTA så försvinner ditt bevis på att du vann."
+                        // Ok, I give them another chance in Main
+                        showBingoGrattis = true
                     }else{
                         waitToTheLastToShowLooser = true
                     }
@@ -134,9 +138,14 @@ class ShowBingoCharts : AppCompatActivity() {
         binding.bingoPosTV.text = showMarker.toString()
 
         binding.goToNextPosBtn.setOnClickListener{
+            // I had some trouble if they pressed NEXT more than once
+
+            binding.goToNextPosBtn.setBackgroundColor(Color.LTGRAY)
+            if (!BlockNextButton) {
+                BlockNextButton = true
                 questionFound[showMarker] = true
                 ThreeSecondCountActive = false
-                if (showMarker == 12){
+                if (showMarker == 12) {
                     walkFiniched = true
 
                     // två ??
@@ -151,14 +160,14 @@ class ShowBingoCharts : AppCompatActivity() {
                     countQuizWalks2 = 0
                     i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(i)
-                }
-                else{
+                } else {
                     showMarker += 1
                     blockShowQuestion = false
                     questFound = 0
                 }
 
                 countdownSecond()
+            }
         }
 
         binding.quitBingoBtn.setOnClickListener {
@@ -207,13 +216,15 @@ class ShowBingoCharts : AppCompatActivity() {
 
     // wait a little while before going back
     fun countdownSecond() {
-        object : CountDownTimer(2000, 1000) {
+        object : CountDownTimer(1000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
             }
 
             override fun onFinish() {
                 // testar
                 blockCountDown = false
+                BlockNextButton = false
+                binding.goToNextPosBtn.setBackgroundColor(Color.WHITE)
 
                 finish()
             }

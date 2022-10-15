@@ -15,9 +15,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
-// bara för test, bort sen. fundera hur vi skall hantera att testar får hitta alla koordinater
-var debuggHomeTest = false
-var debuggHomeTestGrey = false
+
 
 var logins = ArrayList(mutableListOf(String))
 //var loginKeys = ArrayList(mutableListOf(String))

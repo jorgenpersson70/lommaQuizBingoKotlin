@@ -46,6 +46,10 @@ import java.io.IOException
 // Context.startForegroundService()
 
 
+// bara för test, bort sen. fundera hur vi skall hantera att testar får hitta alla koordinater
+var debuggHomeTest = false
+var debuggHomeTestGrey = false
+
 
 // hemma 55.6773742895471, 13.075809329729376
 // indu slättängs 55.67786126949259, 13.07625457640789
@@ -94,7 +98,7 @@ var hitCount = 0
 var readFromFirebase = 0
 var takeAwayButtonToChooseRunda = false
 var takeAwayButtonStartBingo = true
-
+var showBingoGrattis = false
 
 //class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener, GoogleMap.OnMarkerDragListener {
 class MainActivity : AppCompatActivity() {
@@ -172,6 +176,12 @@ class MainActivity : AppCompatActivity() {
             binding.chooseQuiz.visibility = View.INVISIBLE
         }
 
+        if (showBingoGrattis){
+            binding.grattisIV.visibility = View.VISIBLE
+        }else{
+            binding.grattisIV.visibility = View.INVISIBLE
+        }
+
    /*     if (takeAwayButtonToChooseRunda){
             binding.SeeWalksBtn.visibility = View.INVISIBLE
         }else{
@@ -187,6 +197,7 @@ class MainActivity : AppCompatActivity() {
         // jag tror att det var showWalk
         binding.SeeWalksBtn.setOnClickListener {
             val intent = Intent(this, showWalk::class.java)
+            showBingoGrattis = false
 
          //  intent.putExtra("from", "MainActivity")
             startActivity(intent)
@@ -200,14 +211,14 @@ class MainActivity : AppCompatActivity() {
 
         binding.chooseQuizBtn.setOnClickListener {
             val intent = Intent(this, ListOfQuizes::class.java)
-
+            showBingoGrattis = false
             intent.putExtra("from", "MainActivity")
             startActivity(intent)
         }
 
         binding.loginMainBtn.setOnClickListener {
             val intent = Intent(this, login::class.java)
-
+            showBingoGrattis = false
             startActivity(intent)
             /*        val intent = Intent(this, newfront::class.java)
             startActivity(intent)*/
@@ -215,6 +226,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.chooseQuiz.setOnClickListener {
             val intent = Intent(this, showMap::class.java)
+            showBingoGrattis = false
             clearPrevNumbers()
             intent.putExtra("walk", "Bingo")
             startActivity(intent)
@@ -222,19 +234,19 @@ class MainActivity : AppCompatActivity() {
 
         binding.createBingoBtn.setOnClickListener {
             val intent = Intent(this, CreateBingo::class.java)
-
+            showBingoGrattis = false
             startActivity(intent)
         }
 
         binding.infoQuizBtn.setOnClickListener {
             val intent = Intent(this, AboutQuiz::class.java)
-
+            showBingoGrattis = false
             startActivity(intent)
         }
 
         binding.infoBingoBtn.setOnClickListener {
             val intent = Intent(this, AboutBingo::class.java)
-
+            showBingoGrattis = false
             startActivity(intent)
         }
 
@@ -295,6 +307,12 @@ class MainActivity : AppCompatActivity() {
             binding.chooseQuiz.visibility = View.VISIBLE
         }
 
+        if (showBingoGrattis){
+            binding.grattisIV.visibility = View.VISIBLE
+        }else{
+            binding.grattisIV.visibility = View.INVISIBLE
+        }
+
     /*    if (BingoPasswordFound){
             binding.chooseQuiz.visibility = View.VISIBLE
         }else{
@@ -313,6 +331,12 @@ class MainActivity : AppCompatActivity() {
             binding.createBingoBtn.visibility = View.VISIBLE
         }else{
             binding.createBingoBtn.visibility = View.INVISIBLE
+        }
+
+        if (showBingoGrattis){
+            binding.grattisIV.visibility = View.VISIBLE
+        }else{
+            binding.grattisIV.visibility = View.INVISIBLE
         }
     }
 

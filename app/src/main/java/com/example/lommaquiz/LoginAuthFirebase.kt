@@ -59,6 +59,7 @@ class LoginAuthFirebase : AppCompatActivity() {
 
         binding.createWalkLoginBtn.setOnClickListener {
             forceRundacLogin()
+            saveCoordsNumber = 0
             questionUser = ""
             binding.loginStatusTV.text = "Du är inloggad för att skapa runda. Tryck back, back, välj promenad, skapa ny runda "
         }

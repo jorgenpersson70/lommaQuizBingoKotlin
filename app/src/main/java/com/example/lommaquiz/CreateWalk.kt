@@ -6,6 +6,8 @@ import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
@@ -22,11 +24,14 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 
 var latitude = 0.0f
 var longitude = 0.0f
 var saveCoordsNumber = 0
+
+var walkNameExists = false
 
 class CreateWalk : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -80,6 +85,8 @@ class CreateWalk : AppCompatActivity(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
 
         countdownSecond()
+
+        walkNameExists = false
 
         binding.saveCoordBtn.setOnClickListener {
    //         var masterLoggedIn = false
@@ -141,28 +148,64 @@ fun writeCoords(){
             binding.infoTroubleTV2.text = "Namn på runda högst 15 tecken"
             return
         }
+        if (saveCoordsNumber == 0) {
+            if (checkIfNameExists()){
+
+
+            }
+       //     return
+        }
         walkNameSave = binding.walkNameTV.text.toString()
     }else{
         walkNameSave = questionUser
     }
 
-    var shopref = database.child("QuizWalks").child("maps").child(walkNameSave).child(ChildChar).child("posLatitude")
-    shopref.setValue(latitude)
-    shopref = database.child("QuizWalks").child("maps").child(walkNameSave).child(ChildChar).child("posLongitude")
-    shopref.setValue(longitude)
+    Handler(Looper.getMainLooper()).postDelayed({
+        if (!walkNameExists){
+            var shopref = database.child("QuizWalks").child("maps").child(walkNameSave).child(ChildChar).child("posLatitude")
+            shopref.setValue(latitude)
+            shopref = database.child("QuizWalks").child("maps").child(walkNameSave).child(ChildChar).child("posLongitude")
+            shopref.setValue(longitude)
 
-    saveCoordsNumber+=1
-    binding.statusSaveTV.text = "Koordinat "+saveCoordsNumber.toString()+" sparad"
-    if (saveCoordsNumber > 11) {
-        binding.statusSaveTV.text = "Alla 12 är sparade"
-    }
+            saveCoordsNumber+=1
+            binding.statusSaveTV.text = "Koordinat "+saveCoordsNumber.toString()+" sparad"
+            if (saveCoordsNumber > 11) {
+                binding.statusSaveTV.text = "Alla 12 är sparade"
+            }
 
-    fkip = LatLng(latitude.toDouble(), longitude.toDouble())
-    var themarker = MarkerOptions().position(fkip).title("Fråga "+questNumber)
-    mMap10.addMarker(themarker)
+            fkip = LatLng(latitude.toDouble(), longitude.toDouble())
+            var themarker = MarkerOptions().position(fkip).title("Fråga "+questNumber)
+            mMap10.addMarker(themarker)
+        }
+    }, 2000)
 }
 
+fun checkIfNameExists():Boolean{
+    var walkNameSave = ""
 
+    walkNameSave = binding.walkNameTV.text.toString()
+
+    database.child("QuizWalks").child("maps").child(walkNameSave).get()
+        .addOnSuccessListener {
+            Log.i("firebase", "Got value ${it.value}")
+            if (it.value != null) {
+                walkNameExists = true
+                binding.infoTroubleTV2.visibility = View.VISIBLE
+                binding.infoTroubleTV2.text = "Namnet finns redan"
+            }else{
+                binding.infoTroubleTV2.visibility = View.INVISIBLE
+                binding.infoTroubleTV2.text = ""
+                walkNameExists = false
+            }
+
+        }.addOnFailureListener {
+            Log.e("firebase", "Error getting data", it)
+
+        }
+
+    // could this return false because waiting for read ?
+    return walkNameExists
+}
 
     fun countdownSecond() {
         object : CountDownTimer(2000, 1000) {

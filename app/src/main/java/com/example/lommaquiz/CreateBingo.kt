@@ -1546,6 +1546,7 @@ fun CheckDiagonal():Boolean{
 
         // jag fick inte rätt på detta så därför lade jag in en global flagga, existAlready
     //    existAlready =
+        existAlready = 0
             rundaAlreadyExist()
 // NoAnswer, SameName, NameOK
         Handler(Looper.getMainLooper()).postDelayed({
@@ -1738,11 +1739,16 @@ fun CheckDiagonal():Boolean{
                         .child("B4Gvalues").setValue(GValuesTemp)
                     database.child("BingoPlayersCharts").child(name2).child(TempStr + i.toString())
                         .child("B5Ovalues").setValue(OValuesTemp)
+
+
+                    // Jag tror att det är korrekt att göra så
+                    var logout = LoginAuthFirebase()
+                    logout.logout()
+
                 }
             }
-            // Jag tror att det är korrekt att göra så
-            var logout = LoginAuthFirebase()
-            logout.logout()
+
+
         }, 2000)
 
     }
@@ -1750,6 +1756,26 @@ fun CheckDiagonal():Boolean{
     suspend fun twoSec() {
         delay(2000)
     }
+
+    /* varför misslyckas jag med att skriva ? kan jag använda
+    usersRef.child(date).setValue(userMap)
+            .addOnCompleteListener { task ->
+                adminRef.child(date).setValue(userMap)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Toast.makeText(
+                                baseContext, "Success",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            Toast.makeText(
+                                baseContext, "error.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+            }
+     */
 
     fun rundaAlreadyExist() {
         // NoAnswer, SameName, NameOK

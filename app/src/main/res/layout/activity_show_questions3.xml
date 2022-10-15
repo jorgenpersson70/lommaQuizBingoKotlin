@@ -141,6 +141,7 @@ tools:context=".showQuestions3">
         android:background="#F8F6F6"
         android:text="TextView"
         android:textColor="@color/black"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/answer1TV23"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

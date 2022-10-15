@@ -109,4 +109,14 @@
         app:layout_constraintBottom_toTopOf="@+id/chooseQuiz"
         app:layout_constraintEnd_toEndOf="@+id/frontImage" />
 
+    <ImageView
+        android:id="@+id/grattisIV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="@+id/frontImage"
+        app:layout_constraintTop_toTopOf="@+id/frontImage"
+        app:srcCompat="@drawable/grattis_till_bingovinsten" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
