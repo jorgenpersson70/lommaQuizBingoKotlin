@@ -1839,7 +1839,7 @@ fun CheckDiagonal():Boolean{
                                 if (snapchild.key == "Year") {
                                     ReadYear = snapchild.value.toString().toInt()
                                 }
-                                if (snapchild.key == "name") {
+                          /*      if (snapchild.key == "name") {
                                     if (ReadDay.toInt() < DayInt.toInt()){
                                         erase = true
                                     }
@@ -1847,7 +1847,33 @@ fun CheckDiagonal():Boolean{
                                         erase = true
                                     }
                                     BingoNameErase = snapchild.value.toString()
+                                }*/
+                                if (snapchild.key == "name") {
+                                    // wait mopre than 24*2 h before erase
+                                    if (DayInt.toInt() > (ReadDay.toInt() + 2)){
+                                        erase = true
+                                    }
+                                    // If saved day is 31, wait until day 3 until erase
+                                    if ((DayInt.toInt() < ReadDay.toInt()) && (DayInt.toInt() > 2)){
+                                        erase = true
+                                    }
+
+                                    BingoNameErase = snapchild.value.toString()
                                 }
+
+                                /*
+
+                                // wait mopre than 24*2 h before erase
+                            if (TodayDayInt > (ReadDayInt+2)){
+                                print("c")
+                                erase = true
+                            }
+                            // If saved day is 31, wait until day 3 until erase
+                            if ((TodayDayInt < ReadDayInt) && (TodayDayInt > 2)){
+                                print("c")
+                                erase = true
+                            }
+                                 */
 
 
                                 if ((erase) && (BingoNameErase !="")){

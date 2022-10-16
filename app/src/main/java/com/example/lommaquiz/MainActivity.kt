@@ -47,8 +47,8 @@ import java.io.IOException
 
 
 // bara för test, bort sen. fundera hur vi skall hantera att testar får hitta alla koordinater
-var debuggHomeTest = false
-var debuggHomeTestGrey = false
+var debuggHomeTest = true
+var debuggHomeTestGrey = true
 
 
 // hemma 55.6773742895471, 13.075809329729376
